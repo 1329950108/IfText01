@@ -1,0 +1,48 @@
+public class IfTest02{
+	public static void main( String[] args){
+		java.util.Scanner s=new java.util.Scanner(System.in);
+		System.out.print("请输入天气(晴/雨)：");
+		String weather = s.next();
+		String str = "擦防晒霜";
+		if (((weather == "晴")||(weather == "雨"))){
+			str = "输入有误！";
+			System.out.println(str);
+			System.exit(0);
+		}else{
+			//java.util.Scanner ss=new java.util.Scanner(System.in);
+			System.out.print("请输入性别(男/女)：");
+			String sex = s.next();
+			if (((sex == "男")||(sex == "女"))){
+			str = "输入有误！";
+			System.out.println(str);
+			System.exit(0);
+			}else{ 
+				String first = "您出门的选择是：";
+				if (weather == "雨"){
+					if (sex == "男"){
+						str = "带大黑伞";
+						System.out.println(first + str);
+					}else{
+						str = "带小花伞";
+						System.out.println(first + str);
+					}
+				}else{
+					
+					System.out.print("请输入性别(男/女)：");
+					int tem = s.nextInt();
+					if( (temperature <-196)||(temperature >100)){
+						str = "输入有误！";
+						System.out.println(str);
+						System.exit(0);						
+					}else if(temperature <30){
+						str ="带太阳镜";
+						System.out.println(first + str);
+					}else{
+						System.out.println(first +str);
+					}
+					
+				}
+			}
+		}
+	}
+}
