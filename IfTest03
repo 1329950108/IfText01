@@ -1,0 +1,52 @@
+public class IfTest03
+{
+	public static void main(String[] args){
+		System.out.println("      欢迎使用本系统");
+		System.out.println("提示一：0代表晴，1代表雨；");
+		System.out.println("提示二：0代表男，1代表女；");
+		System.out.println("提示三：温度应用数字表示。");
+		java.util.Scanner s =new java.util.Scanner(System.in);
+		//输入性别
+		System.out.print("请输入性别：");
+		int sex = s.nextInt();
+		//判断性别是否有效
+		if((sex != 0)&&(sex != 1)){
+			System.out.println("您到底是啥性别？？");
+		}else{
+			//输入天气
+			System.out.print("请输入天气：");
+			int weather = s.nextInt();
+			//判断天气是否有效
+			if((weather != 0)&&(weather != 1)){
+				System.out.println("您输入的天气不合法！");
+				//判断天气
+			}else if(weather == 1){
+				//天气为雨判断性别
+				if(sex == 0){
+					System.out.println("带大黑伞");
+				}else{
+					System.out.println("带小花伞");
+				}
+			}else{
+				//天气为晴输入温度
+				System.out.print("请输入温度：");
+				int tem = s.nextInt();
+				//验证温度是否有效
+				if((tem < -196)||(tem > 100)){
+					System.out.println("您输入的温度不合法！");
+					//判断温度
+				}else if(tem >= 30){
+					//30度以上判断性别
+					if(sex ==0){
+						System.out.println("戴太阳镜");
+					}else{
+						System.out.println("擦防晒霜");
+					}		
+				}				
+				else{
+					System.out.println("在家隔离");
+				}
+			}
+		}
+	}
+}
