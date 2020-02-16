@@ -10,13 +10,6 @@ public class RecursionTest01
 		int begain = s.nextInt();
 		System.out.print("请输入从哪个数结束：");
 		int over = s.nextInt();
-		//判断是否需要互换较大的数和较小的数
-		if (begain > over)
-		{
-			int change = begain;
-			begain = over;
-			over = change;
-		}
 		System.out.println("最终累加的结果是：" + Re01.sum(begain,over));
 
 	}
