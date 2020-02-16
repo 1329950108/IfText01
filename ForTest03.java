@@ -12,24 +12,25 @@ public class ForTest03
 			System.out.println("对不起，您输入的范围不合法！");
 		//若范围为1
 		}else if(range == 1){
-			System.out.println("1");
+			System.out.println(" ");
 		}else{
 			int judgeEnter = 0;
 			//遍历1-range
 			for(int i=1;i<=range;i++){
 				//判断变量关于素数
-				int judgePrimeNum = 0;
+				boolean judgePrimeNum = true;
 				//遍历除1和本身之外的数
 				for(int j=2;j<i;j++){
 					//余数变量
 					int remainder = i%j;
 					//判断能否整除
 					if(remainder == 0){
-						judgePrimeNum += 1;
+						judgePrimeNum = false;
+						break;
 					}
 				}
 				//判断是否是素数
-				if(judgePrimeNum == 0){
+				if(judgePrimeNum){
 					//System.out.print(i + " ");
 					System.out.print(i);
 					int scale =10;
@@ -46,7 +47,7 @@ public class ForTest03
 							
 						}
 					}
-					judgeEnter += 1;
+					judgeEnter++;
 					//判断是否需要回车
 					if((judgeEnter% 8) == 0){
 						System.out.println();
