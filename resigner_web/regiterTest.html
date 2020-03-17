@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<meta content="text/html" charset="utf-8">
+<html>
+<head>
+    <title>registerTest</title>
+</head>
+<body>
+
+<!--js-->
+<script type="text/javascript">
+    window.onload = function () {
+
+        var count = undefined;
+        var flags= new Map();
+        var tempStr= "";
+        var tempObj= null;
+
+        var inputs= document.getElementsByTagName('input');
+
+        //第一次输入时清空网页提示，之后不清空
+        for(var i=0;i<inputs.length;i++){
+            if (inputs[i].type == "text"){
+                inputs[i].onfocus= function () {
+                    if (flags[this.id] == undefined){
+                        this.value= "";
+                        flags.set(this.id,-1);
+                    }
+                    tempStr= this.id + "Error";
+                    tempObj= document.getElementById(tempStr);
+                    tempObj.innerText="";
+                }
+            }
+        }
+
+
+        var username= document.getElementById("username");
+        var usernameError= document.getElementById("usernameError");
+        var usernameRegular = /^\w{6,14}$/;
+        username.onblur = function () {
+            flags[this.id]= -1;
+            if(username.value== ""){
+                usernameError.innerText= "账户不能为空！";
+            }else{
+                if (username.value.length<6||username.value.length>14){
+                    usernameError.innerText= "账号需在6到14位之间！";
+
+                }else {
+
+                    if (!usernameRegular.test(username.value)){
+                        usernameError.innerText = "该账号不合法！";
+                    }else{
+                        count= Math.round(Math.random());
+                        if (!count){
+                            usernameError.innerText = "该账户已注册！";
+                        }else {
+                            flags[this.id]=2;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        var password= document.getElementById("password");
+        var passwordError= document.getElementById("passwordError");
+        password.onblur = function () {
+            flags[this.id]= -1;
+            if(password.value== ""){
+                passwordError.innerText= "密码不能为空！";
+            }else{
+                if (password.value.length<6||password.value.length>14){
+                    passwordError.innerText= "账号需在6到14位之间！";
+                }else {
+                    flags[this.id]=2;
+                }
+            }
+        }
+
+        var confirm= document.getElementById("confirm");
+        var confirmError= document.getElementById("confirmError");
+        confirm.onblur = function () {
+            flags[this.id]= -1;
+            if (confirm.value != password.value){
+                confirmError.innerText = "两次输入不一致";
+            }else {
+                flags[this.id]=2;
+            }
+        }
+
+
+        var email= document.getElementById("email");
+        var emailError= document.getElementById("emailError");
+        var emailRegular= /^\w{6,14}$/;
+        email.onblur = function () {
+            flags[this.id]= -1;
+            if(email.value== ""){
+                emailError.innerText= "邮箱不能为空！";
+            }else{
+                if (!emailRegular.test(email.value)){
+                    emailError.innerText = "请输入正确的邮箱地址！";
+                }else{
+                    count= Math.round(Math.random());
+                    if (!count){
+                        emailError.innerText = "该邮箱已被注册！";
+                    }else {
+                        flags[this.id]=2;
+                    }
+                }
+            }
+        }
+
+        var submit= document.getElementById("submit");
+
+        submit.onclick= function () {
+
+           if(flags.size == 0){
+               alert("请完善信息！");
+               return 0;
+           }
+            for (var key in flags){
+                if(flags[key] != 2){
+                    alert("请重新输入！");
+                    return 0;
+                }
+            }
+            alert("注册成功！");
+        }
+
+
+    }
+</script>
+
+
+<!--register table-->
+<table id="register" >
+    <tr>
+        <td><span>名字：</span></td>
+        <td><input type="text" value="请设置账号名" id="username"/></td>
+        <td><span id="usernameError" style="color: #ff0000;font-size: 12px;"></span></td>
+    </tr>
+    <tr>
+        <td><span>密码：</span></td>
+        <td><input type="text" value="请设置密码" id="password" /></td>
+        <td><span id="passwordError" style="color: #ff0000;font-size: 12px;"></span></td>
+    </tr>
+    <tr>
+        <td><span>确认密码：</span></td>
+        <td><input type="text" value="请确认密码" id="confirm" /></td>
+        <td><span id="confirmError" style="color: #ff0000;font-size: 12px;"></span></td>
+    </tr>
+    <tr>
+        <td><span>验证邮箱：</span></td>
+        <td><input type="text" value="请输入验证邮箱" id="email" /></td>
+        <td><span id="emailError" style="color: #ff0000;font-size: 12px;"></span></td>
+    </tr>
+    <tr>
+        <td><input type="submit" id="submit"  value="注册"/></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
